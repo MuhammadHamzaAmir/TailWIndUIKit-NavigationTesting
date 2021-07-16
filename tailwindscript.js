@@ -10,7 +10,7 @@ const puppeteer = require("puppeteer");
   var width_desired = 1300; //desired width for the webpage
   var height_desired = 600; //desired height for the webpage
 
-  var email = "xixeto1835@godpeed.com"; //email used for signup and login
+  var email = "xixeto1835@cdasgodpeed.com"; //email used for signup and login
   var password = "176hgwqc"; // default password for all the accounts
   var name = "Ahmad Ali"; // default name for all the accounts
 
