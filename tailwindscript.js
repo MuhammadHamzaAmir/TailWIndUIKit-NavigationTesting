@@ -7,14 +7,14 @@ const puppeteer = require("puppeteer");
   //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
   var large = 1024;
 
-  var width_desired = 800; //desired width for the webpage
+  var width_desired = 1300; //desired width for the webpage
   var height_desired = 600; //desired height for the webpage
 
   var email = "xixeto1835@godpeed.com"; //email used for signup and login
   var password = "176hgwqc"; // default password for all the accounts
   var name = "Ahmad Ali"; // default name for all the accounts
 
-  const browser = await puppeteer.launch({ headless: false }); //browser is launched
+  const browser = await puppeteer.launch({ headless: false, defaultViewport: null,args: ['--start-maximized'] }); //browser is launched
 
   // Create a new incognito browser context.
   //const context = await browser.createIncognitoBrowserContext(); // for testing
@@ -25,12 +25,12 @@ const puppeteer = require("puppeteer");
   await page.setDefaultNavigationTimeout(0);
 
   await page.goto("https://tailwinduikit.com/"); //mentioned site is then reached
-
+/*
   await page.setViewport({
     width: width_desired,
     height: height_desired,
     deviceScaleFactor: 1,
-  }); //setting broswer window size
+  }); //setting broswer window size*/
 
   await page.waitForTimeout(5000); // delay for 5 second for website to load
 
@@ -133,18 +133,18 @@ const puppeteer = require("puppeteer");
   await signup(name, email, password, page, width_desired, small, large);
   //console.log(email);
 
-  await page.waitForTimeout(4000); // delay of 38.5 seconds
+  await page.waitForTimeout(5000); // delay of 38.5 seconds
 
   await console.log("after time signup");
   //navigate from login page to components page
   await comp_click_after_login(page, width_desired, small, large);
 
-  await page.waitForTimeout(2000); // delay of 18 seconds
+  await page.waitForTimeout(5000); // delay of 18 seconds
 
   //navigate from componentsboxed layout page to  page
   await comp_to_boxed_layout(page, width_desired, small, large);
 
-  await page.waitForTimeout(2000); // delay of 12 seconds
+  await page.waitForTimeout(3000); // delay of 12 seconds
 
   //clickng on get access button on boxed layout page
   await get_access_click(page);
