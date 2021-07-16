@@ -1,0 +1,24 @@
+{
+  "name": "TailWIndUIKit-NavigationTesting",
+  "version": "1.0.0",
+  "description": "------------",
+  "main": "tailwindscript.js",
+  "dependencies": {
+    "puppeteer": "^10.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhammadHamzaAmir/TailWIndUIKit-NavigationTesting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuhammadHamzaAmir/TailWIndUIKit-NavigationTesting/issues"
+  },
+  "homepage": "https://github.com/MuhammadHamzaAmir/TailWIndUIKit-NavigationTesting#readme"
+}
