@@ -8,7 +8,17 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test_login" : "node test/login.js",
+    "test_jointuk": "node test/jointuk.js",
+    "test_signup": "node test/signup.js",
+    "test_signout": "node test/signout.js",
+    "test_comp_click_after_login": "node test/comp_click_after_login.js",
+    "test_get_accessClick": "node test/get_accessClick.js",
+    "test_login_button_click_on_pricing_page": "node test/login_button_click_on_pricing_page.js",
+    "test_login_click_on_main_page": "node test/login_click_on_main_page.js",
+    "test_login_on_signupbutton": "node test/login_on_signupbutton.js",
+    "test_comp_to_boxed_layout": "node test/comp_to_boxed_layout.js",
+    "test_student_form_fill": "node test/student_form_fill.js"
   },
   "repository": {
     "type": "git",

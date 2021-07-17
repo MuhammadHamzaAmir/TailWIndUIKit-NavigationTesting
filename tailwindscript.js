@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const tk = require("./test/login.js");
 
 (async () => {
   //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
@@ -10,9 +11,9 @@ const puppeteer = require("puppeteer");
   var width_desired = 1300; //desired width for the webpage
   var height_desired = 600; //desired height for the webpage
 
-  var email = "xixeto1835@cdasgodpeed.com"; //email used for signup and login
-  var password = "176hgwqc"; // default password for all the accounts
-  var name = "Ahmad Ali"; // default name for all the accounts
+  var email = "testoperation@test.com"; //email used for signup and login
+  var password = "176hgwqctest"; // default password for all the accounts
+  var name = "Test-Operation"; // default name for all the accounts
 
   const browser = await puppeteer.launch({ headless: false, defaultViewport: null,args: ['--start-maximized'] }); //browser is launched
 
@@ -31,7 +32,7 @@ const puppeteer = require("puppeteer");
     height: height_desired,
     deviceScaleFactor: 1,
   }); //setting broswer window size*/
-
+/* Start**/
   await page.waitForTimeout(5000); // delay for 5 second for website to load
 
   var xpath_of_menu = "//*[@id='i-menu']"; //xpath for menu icon on main page
@@ -120,7 +121,7 @@ const puppeteer = require("puppeteer");
       console.log("Login is not clicked");
     } //end of CATCH
   } //end of else if block
-
+/* END**/
   // a function is called where Join TUK button is clicked.
 
   await page.waitForTimeout(4000); // delay of 4 seconds
@@ -304,10 +305,6 @@ async function signup(
       } //end of else if block
       else if (text_of_output_error_2.includes("Email")) {
         //checking if the issue is due to email duplicate
-        //let email_input_updated = email_handler(email_input); //getting new email from a function email_handler
-        //email_input_updated= (await email_input_updated).toString();  //converting the object returned by function to string
-        //signup(name_input,email_input_updated, password_input, page_entry); //calling the function signup with newer email
-
         login_on_signupbutton(page_entry); //it clickes on login button on signup page
         login(page_entry, email_input, password_input); //login functionality happpens here on login page
       } //end of else if block
@@ -318,6 +315,7 @@ async function signup(
     //start of outer CATCH
     console.log("Error in siging up");
     //console.error(error);
+    
   } //end of outer CATCH
 } // end of signup function
 
@@ -582,7 +580,7 @@ async function comp_click_after_login(
     } catch (e) {
       //end of try
 
-      //start of catch
+      //start of catch 
       console.log("Component is not clicked");
     } //end of catch
   } //end of else if block
