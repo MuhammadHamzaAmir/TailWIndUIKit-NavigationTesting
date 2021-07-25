@@ -1,3 +1,45 @@
+const puppeteer = require("puppeteer");
+const cookie_save_ftn = require("./cookies/cookies_save.js");
+
+
+(async () => {
+  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
+  var small = 1023;
+
+  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
+  var large = 1024;
+
+  var width_desired = 1300; //desired width for the webpage
+  var height_desired = 600; //desired height for the webpage
+
+  var email = "testoperation@test.com"; //email used for signup and login
+  var password = "176hgwqctest"; // default password for all the accounts
+  var name = "Test-Operation"; // default name for all the accounts
+
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null,
+    args: ["--start-maximized"],
+  }); //browser is launched
+
+  // Create a new incognito browser context.
+  //const context = await browser.createIncognitoBrowserContext(); // for testing
+
+  var page = await browser.newPage(); // a new page is created
+
+  // Configure the navigation timeout
+  await page.setDefaultNavigationTimeout(0);
+
+  await page.goto("https://app.tailwinduikit.com/signup"); //mentioned site is then reached
+  await page.waitForTimeout(5000); // delay for 5 second for website to load
+
+  await signup(name,email,password,page);
+  await page.waitForTimeout(5000); // delay for 5 second for website to load
+
+  await cookie_save_ftn.cookies_save(page);
+
+  await browser.close();
+})();
 
 
 //signup function
@@ -5,10 +47,7 @@ async function signup(
   name_input,
   email_input,
   password_input,
-  page_entry,
-  width_desired,
-  low_width,
-  high_width
+  page_entry
 ) {
   var xpath_name_if = "//*[@id='name']"; //xpath of name input field on sign up page
   var xpath_email_if = "//*[@id='email']"; //xpath of email input field on sign up page
@@ -92,19 +131,21 @@ async function signup(
 
       //start of if block
       if (typeof text_of_output_error_2 === "object") {
-        signout(page_entry, width_desired, low_width, high_width); //if signup is successful then signout occurs
-        login(page_entry, email_input, password_input); //after signout login page appears and then login happens
+        console.log(" ");
       } //end of if block
 
       //start of else  if block
       else if (text_of_output_error_2.includes("Something")) {
         //checking if the issue is due to something else other than email duplicate
         signup(name_input, email_input, password_input, page_entry); //signup function is called again to resolve the issue
-      } //end of else if block
+      } 
+      //end of else if block
+      
       else if (text_of_output_error_2.includes("Email")) {
         //checking if the issue is due to email duplicate
-        login_on_signupbutton(page_entry); //it clickes on login button on signup page
-        login(page_entry, email_input, password_input); //login functionality happpens here on login page
+        //login_on_signupbutton(page_entry); //it clickes on login button on signup page
+        console.log(" ");
+        
       } //end of else if block
     } //end of inner CATCH
   } catch (error) {

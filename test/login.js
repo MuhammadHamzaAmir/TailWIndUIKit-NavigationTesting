@@ -1,3 +1,48 @@
+const puppeteer = require("puppeteer");
+const cookie_save_ftn = require("./cookies/cookies_save.js");
+
+(async () => {
+  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
+  var small = 1023;
+
+  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
+  var large = 1024;
+
+  var width_desired = 1300; //desired width for the webpage
+  var height_desired = 600; //desired height for the webpage
+
+  var email = "testoperation@test.com"; //email used for signup and login
+  var password = "176hgwqctest"; // default password for all the accounts
+  var name = "Test-Operation"; // default name for all the accounts
+
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null,
+    args: ["--start-maximized"],
+  }); //browser is launched
+
+  // Create a new incognito browser context.
+  //const context = await browser.createIncognitoBrowserContext(); // for testing
+
+  var page = await browser.newPage(); // a new page is created
+
+  // Configure the navigation timeout
+  await page.setDefaultNavigationTimeout(0);
+
+  await page.goto("https://app.tailwinduikit.com/login"); //mentioned site is then reached
+  await page.waitForTimeout(5000); // delay for 5 second for website to load
+
+  await login(page,email,password);
+  await page.waitForTimeout(5000); // delay for 5 second for website to load
+
+  await cookie_save_ftn.cookies_save(page);
+
+  await browser.close();
+})();
+
+
+
+
 
 //Login function for entering credentials from login page
 async function login(page_entry, email, password) {
@@ -42,3 +87,5 @@ async function login(page_entry, email, password) {
     console.log("Login Button is not clicked");
   } //end of catch
 }
+
+module.exports = {login};
