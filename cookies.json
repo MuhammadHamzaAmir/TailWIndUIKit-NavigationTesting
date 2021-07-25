@@ -1,10 +1,10 @@
 [
   {
     "name": "token",
-    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZkNDg3ODc4Yzc1NjE4ODFhYWI5MTgiLCJsaWNlbnNlVHlwZSI6ImNvbW11bml0eS1saWNlbnNlIiwidHlwZSI6InJlZ3VsYXIiLCJyZWZlcnJhbEhhc2giOiJlMGY0YTZmNy1mMTY5LTQ4YzctOTAzOC04Njc3ZDI5MzFlNTYiLCJleHAiOjE2MjczMTU5NjMsImlhdCI6MTYyNzIyOTU2M30.aWbXo1MIBSNnPcqQcH15hSNZbYmnpKBImrKlJBhNvRk",
+    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZkNDg3ODc4Yzc1NjE4ODFhYWI5MTgiLCJsaWNlbnNlVHlwZSI6ImNvbW11bml0eS1saWNlbnNlIiwidHlwZSI6InJlZ3VsYXIiLCJyZWZlcnJhbEhhc2giOiJlMGY0YTZmNy1mMTY5LTQ4YzctOTAzOC04Njc3ZDI5MzFlNTYiLCJleHAiOjE2MjczMTkwNzQsImlhdCI6MTYyNzIzMjY3NH0.sRSMh2bEJ37tC4Iw20Li9BqDOBCSL6tIC6WKTGWeuI0",
     "domain": "app.tailwinduikit.com",
     "path": "/",
-    "expires": 1627315963.729377,
+    "expires": 1627319074.313912,
     "size": 317,
     "httpOnly": false,
     "secure": false,
@@ -15,10 +15,10 @@
   },
   {
     "name": "_gcl_au",
-    "value": "1.1.1536874278.1627229546",
+    "value": "1.1.1502075676.1627232658",
     "domain": ".tailwinduikit.com",
     "path": "/",
-    "expires": 1635005545,
+    "expires": 1635008658,
     "size": 32,
     "httpOnly": false,
     "secure": false,

@@ -25,11 +25,13 @@ const cookies_load_ftn = require("./cookies/cookies_load");
   //const context = await browser.createIncognitoBrowserContext(); // for testing
 
   var page = await browser.newPage(); // a new page is created
-
-  await cookies_load_ftn.cookies_load(page);   //cookies restored from the previous session
   
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
+  
+  await cookies_load_ftn.cookies_load(page);   //cookies restored from the previous session
+  
+  
 
   await page.goto("https://app.tailwinduikit.com/listing/webapp/master_layout/boxed_layout"); //mentioned site is then reached
   await page.waitForTimeout(5000); // delay for 5 second for website to load
