@@ -29,7 +29,7 @@ const puppeteer = require("puppeteer");
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
 
-  await page.goto("https://app.tailwinduikit.com/login"); //mentioned site is then reached
+  await page.goto("https://tailwinduikit.com/pricing"); //mentioned site is then reached
   await page.waitForTimeout(5000); // delay for 5 second for website to load
 
   await student_form(page,name,email,"testing","tester","TEST Kingdom");
