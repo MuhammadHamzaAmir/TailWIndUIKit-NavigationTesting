@@ -20,7 +20,7 @@ const cookies_load_ftn = require("./cookies/cookies_load");
     defaultViewport: null,
     args: ["--start-maximized"],
   }); //browser is launched
-
+ 
   // Create a new incognito browser context.
   //const context = await browser.createIncognitoBrowserContext(); // for testing
 

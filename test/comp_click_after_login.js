@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 const login_ftn = require("./login.js");
-
+ 
 
 (async () => {
   //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
