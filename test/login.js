@@ -32,9 +32,6 @@ const puppeteer = require("puppeteer");
 })();
 
 
-
-
-
 //Login function for entering credentials from login page
 async function login(page_entry, email, password) {
   var xpath_email_if = "//*[@id='email2']"; //xpath of email input field on login page
