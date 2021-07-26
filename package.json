@@ -19,7 +19,9 @@
     "test_login_click_on_main_page": "node test/login_click_on_main_page.js",
     "test_login_on_signupbutton": "node test/login_on_signupbutton.js",
     "test_comp_to_boxed_layout": "node test/comp_to_boxed_layout.js",
-    "test_student_form_fill": "node test/student_form_fill.js"
+    "test_student_form_fill": "node test/student_form_fill.js",
+    "test_dev_license": "node test/dev_license.js"
+
   },
   "repository": {
     "type": "git",
