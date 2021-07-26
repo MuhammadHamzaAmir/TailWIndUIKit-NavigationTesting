@@ -1,16 +1,8 @@
 const puppeteer = require("puppeteer");
 
 (async () => {
-  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
-  var small = 1023;
-
-  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
-  var large = 1024;
-
-  var width_desired = 1300; //desired width for the webpage
-  var height_desired = 600; //desired height for the webpage
-
-  var email = "testoperation@testA.com"; //email used for signup and login
+  let number_random = Math.random();  //a random number is generated
+  var email = "testoperation"+number_random+"@testABC.com"; //email used for signup and login
   var password = "176hgwqctest"; // default password for all the accounts
   var name = "Test-Operation"; // default name for all the accounts
 
@@ -89,6 +81,32 @@ async function signup(
       xpath_signup_b,
       { visible: true }
     ); //signup button is to be found here
+
+    /*
+ // For Scrolling
+ await autoScroll(page_entry);
+ async function autoScroll(page){
+ await page.evaluate(async () => {
+     await new Promise((resolve, reject) => {
+         var totalHeight = 0;
+         var distance = 30;
+         var timer = setInterval(() => {
+             var scrollHeight = document.body.scrollHeight;
+             window.scrollBy(0, distance);
+             totalHeight += distance;
+
+             if(totalHeight >= scrollHeight){
+                 clearInterval(timer);
+                 resolve();
+             }
+         }, 30);
+     });
+ });
+}*/
+
+
+    await signup_button_on_SU_page.evaluate(c=>c.scrollIntoView());
+    await page_entry.waitForTimeout(3001); // delay of 3 seconds
     await signup_button_on_SU_page.evaluate((b) => b.click()); //sign up button is clicked
     console.log("Sign Up button is clicked");
 
