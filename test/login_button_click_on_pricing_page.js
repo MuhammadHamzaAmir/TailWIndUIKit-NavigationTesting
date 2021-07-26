@@ -22,7 +22,7 @@ const puppeteer = require("puppeteer");
   await page.setDefaultNavigationTimeout(0);
 
   await page.goto("https://tailwinduikit.com/pricing"); //mentioned site is then reached
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(2000); // delay for 2 second for website to load
 
   await log_click_on_pp(page);
   await page.waitForTimeout(5000); // delay for 5 second for website to load
@@ -47,7 +47,7 @@ async function log_click_on_pp(
   var xpath_login_pp_s_s =
     "//*[@id='header']/div[2]/div/div/div/div[2]/div/ul/a[8]"; //xpath login button on small screen size
 
-    await page_entry.waitForTimeout(2000); // delay of 2 seconds
+    await page_entry.waitForTimeout(3500); // delay of 3.5 seconds
       //start of try
       var login_item_ft = await page_entry.waitForXPath(xpath_login_pp_l_ss, {
         visible: true,

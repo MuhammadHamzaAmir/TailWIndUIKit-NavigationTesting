@@ -24,7 +24,7 @@ const puppeteer = require("puppeteer");
 
 
   await page.goto("https://app.tailwinduikit.com/login"); //mentioned site is then reached
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(3000); // delay for 3 second for website to load
 
   
 
@@ -43,7 +43,7 @@ async function signout(page_entry,email,password) {
   var xpath_password_if = "//*[@id='password']"; //xpath of password input field on login page
   var xpath_login_b = "//*[@id='btnlog']"; //xpath of login button on sign up page
 
-    await page_entry.waitForTimeout(5000); // delay of 5 seconds
+    await page_entry.waitForTimeout(1750); // delay of 1.75 seconds
 
     let email_input_field = await page_entry.waitForXPath(xpath_email_if, {
       visible: true,

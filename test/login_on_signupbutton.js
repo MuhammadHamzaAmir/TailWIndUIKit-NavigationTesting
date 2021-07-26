@@ -21,7 +21,7 @@ const puppeteer = require("puppeteer");
   await page.setDefaultNavigationTimeout(0);
 
   await page.goto("https://app.tailwinduikit.com/signup"); //mentioned site is then reached
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(3010); // delay for 3.01 second for website to load
 
   await login_on_signupbutton(page);
 
@@ -40,6 +40,16 @@ async function login_on_signupbutton(page_entry) {
     let login_on_sup = await page_entry.waitForXPath(xpath_login_on_sup, {
       visible: true,
     }); //login button is to be found here
+
+    await login_on_sup.evaluate((c) =>
+      c.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      })
+    );   //scrolling till that component
+    await page_entry.waitForTimeout(3001); // delay of 3 seconds
+
     await login_on_sup.evaluate((b) => b.click()); //login button button is clicked
     console.log("Login Button on the signup page is clicked");
   } catch (error) {

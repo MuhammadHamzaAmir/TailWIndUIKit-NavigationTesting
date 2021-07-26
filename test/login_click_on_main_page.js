@@ -34,7 +34,7 @@ const puppeteer = require("puppeteer");
 
 
 async function login_click_on_main_page(page,width_desired,small,large) {
-  await page.waitForTimeout(4500); // delay for 5 second for website to load
+  await page.waitForTimeout(3100); // delay for 3.1 second for website to load
 
   var xpath_of_menu = "//*[@id='i-menu']"; //xpath for menu icon on main page
   var xpath_of_sidemenu = "//*[@id='header']/div[2]/div/div/div/div[2]/div"; //xpath for side menu on main page

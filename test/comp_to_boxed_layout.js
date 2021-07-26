@@ -21,7 +21,7 @@ const puppeteer = require("puppeteer");
   await page.setDefaultNavigationTimeout(0);
 
   await page.goto("https://app.tailwinduikit.com/login"); //mentioned site is then reached
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(3000); // delay for 3 second for website to load
 
   await comp_to_boxed_layout(page,email,password);
   await page.waitForTimeout(5000); // delay for 5 second for website to load
@@ -95,7 +95,7 @@ async function comp_to_boxed_layout(
       await mas_lay_b_l.click(); //arrow button is clicked
       console.log("Button is clicked");
     
-    await page.waitForTimeout(4000); // delay of 5 seconds
+    await page.waitForTimeout(4000); // delay of 4 seconds
 
     //xpath of boxed layout
     var xpath_boxed_lay_l =
