@@ -17,7 +17,7 @@ After installing Nodejs, check for npm and node version
 ### JavaScript
 The script will be run in the browser.
 ### Installation Process
-On Terminal in the specified directory
+On Terminal in the specified directory, initialize npm and install npm and puppeteer by running these commands
 
 `npm init`
 
