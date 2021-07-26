@@ -1,15 +1,6 @@
 const puppeteer = require("puppeteer");
 
-
 (async () => {
-  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
-  var small = 1023;
-
-  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
-  var large = 1024;
-
-  var width_desired = 1300; //desired width for the webpage
-  var height_desired = 600; //desired height for the webpage
 
   var email = "testoperation@test.com"; //email used for signup and login
   var password = "176hgwqctest"; // default password for all the accounts
@@ -21,8 +12,6 @@ const puppeteer = require("puppeteer");
     args: ["--start-maximized"],
   }); //browser is launched
 
-  // Create a new incognito browser context.
-  //const context = await browser.createIncognitoBrowserContext(); // for testing
 
   var page = await browser.newPage(); // a new page is created
 

@@ -1,6 +1,4 @@
 const puppeteer = require("puppeteer");
-const cookie_save_ftn = require("./cookies/cookies_save.js");
-
 
 (async () => {
   //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
@@ -12,7 +10,7 @@ const cookie_save_ftn = require("./cookies/cookies_save.js");
   var width_desired = 1300; //desired width for the webpage
   var height_desired = 600; //desired height for the webpage
 
-  var email = "testoperation@test.com"; //email used for signup and login
+  var email = "testoperation@testA.com"; //email used for signup and login
   var password = "176hgwqctest"; // default password for all the accounts
   var name = "Test-Operation"; // default name for all the accounts
 
@@ -35,8 +33,6 @@ const cookie_save_ftn = require("./cookies/cookies_save.js");
 
   await signup(name,email,password,page);
   await page.waitForTimeout(5000); // delay for 5 second for website to load
-
-  await cookie_save_ftn.cookies_save(page);
 
   await browser.close();
 })();
@@ -155,4 +151,10 @@ async function signup(
     console.log("Error in siging up");
     //console.error(error);
   } //end of outer CATCH
+
+  await page_entry.waitForTimeout(3000); // delay of 3 seconds
+      //verifyuing that it should reach the login page after signout
+      if (page_entry.url() === "https://app.tailwinduikit.com/components") {
+        console.log("Test is successful");
+      }
 } // end of signup function

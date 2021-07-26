@@ -1,15 +1,6 @@
 const puppeteer = require("puppeteer");
-const cookies_load_ftn = require("./cookies/cookies_load"); 
 
 (async () => {
-  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
-  var small = 1023;
-
-  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
-  var large = 1024;
-
-  var width_desired = 1300; //desired width for the webpage
-  var height_desired = 600; //desired height for the webpage
 
   var email = "testoperation@test.com"; //email used for signup and login
   var password = "176hgwqctest"; // default password for all the accounts
@@ -29,16 +20,15 @@ const cookies_load_ftn = require("./cookies/cookies_load");
   // Configure the navigation timeout
   await page.setDefaultNavigationTimeout(0);
 
-  await cookies_load_ftn.cookies_load(page);   //cookies restored from the previous session
+  //await cookies_load_ftn.cookies_load(page);   //cookies restored from the previous session
 
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
 
-  await page.goto("https://app.tailwinduikit.com/components"); //mentioned site is then reached
+  await page.goto("https://app.tailwinduikit.com/login"); //mentioned site is then reached
   await page.waitForTimeout(5000); // delay for 5 second for website to load
 
   
 
-  await signout(page,width_desired,small,large);
+  await signout(page,email,password);
   await page.waitForTimeout(5000); // delay for 5 second for website to load
 
   await browser.close();
@@ -46,25 +36,54 @@ const cookies_load_ftn = require("./cookies/cookies_load");
 
 
 
-async function signout(page_entry, width_desired, low_width, high_width) {
-  /*
-  //removing banner
-  var xpath_banner = "//*[@id='__next']/div/div/div/div[1]/div/div/svg";  //xpath of banner remove icon
-  try{
-    //*[@id="__next"]/div/div/div/div[1]/div/div/svg
+async function signout(page_entry,email,password) {
+  
+  //login happens here
+  var xpath_email_if = "//*[@id='email2']"; //xpath of email input field on login page
+  var xpath_password_if = "//*[@id='password']"; //xpath of password input field on login page
+  var xpath_login_b = "//*[@id='btnlog']"; //xpath of login button on sign up page
 
-    let banner_item = await page_entry.waitForXPath(xpath_banner, { visible: true }); //banner remove icon icon is to be found on the main page
-    await banner_item.evaluate((ab) => ab.click()); //banner remove icon icon when found is clicked
-    console.log("Banner is removed");
-  }
-  catch(error){
-    console.log("Banner is not removed");
-    console.error(error);
+    await page_entry.waitForTimeout(5000); // delay of 5 seconds
 
-  }
-*/
-  //arrow s if taht does not work
-  //*[@id="header"]/div[2]/div/div/div/div[1]/div[2]/div[3]/div/div/div[2]/div
+    let email_input_field = await page_entry.waitForXPath(xpath_email_if, {
+      visible: true,
+    }); //email input field is to be found here
+    await email_input_field.evaluate((b) => b.click({ clickCount: 3 })); //it selects the already written text and is overwritten in next line
+    //console.log(typeof email_input);
+    await email_input_field.type(email); //input is entered in email input field
+    console.log("Email Input is entered");
+
+    await page_entry.waitForTimeout(1500); // delay of 1.5 seconds
+
+    let password_input_field = await page_entry.waitForXPath(
+      xpath_password_if,
+      { visible: true }
+    ); //password input field is to be found here
+    await password_input_field.evaluate((b) => b.click({ clickCount: 3 })); //it selects the already written text and is overwritten in next line
+    await password_input_field.type(password); //input is entered in password input field
+    console.log("Password Input is entered");
+
+    await page_entry.waitForTimeout(1000); // delay of 1 seconds
+
+    let login_button_on_login_page = await page_entry.waitForXPath(
+      xpath_login_b,
+      { visible: true }
+    ); //login is to be found here
+    await login_button_on_login_page.evaluate((b) => b.click()); //login button is clicked
+    console.log("Login Button is clicked");
+      
+    await page_entry.waitForTimeout(3000); // delay of 3 seconds
+
+    //click on components in header
+    var comp_out_menu_l = "//*[@id='componentsMenu']"; //components outside menu in header
+    //start of try
+
+      var comp_item_ft = await page_entry.waitForXPath(comp_out_menu_l, {
+        visible: true,
+      }); //component is to be found on the main page
+      await comp_item_ft.click(); //component when found is clicked
+
+      await page_entry.waitForTimeout(3000); // delay of 3 seconds
 
   var xpath_singout_arrow_s =
     "//*[@id='header']/div[2]/div/div/div/div[1]/div[2]/div[3]/div/div/div"; //after signup small size screen arrow dropdown
@@ -76,39 +95,7 @@ async function signout(page_entry, width_desired, low_width, high_width) {
   var xpath_singout_button_l =
     "//*[@id='header']/div[1]/div/div[2]/div[3]/div/div/div[2]/div/p[2]"; //large screen size signout button
 
-  //this block will execute when screen width size is smaller than or equal to 1023
-  if (width_desired <= low_width) {
-    //arrow click when the screen size is small
-
-    try {
-      //start of try
-      let arrow_item = await page_entry.waitForXPath(xpath_singout_arrow_s, {
-        visible: true,
-      }); //arrow icon is to be found on the main page
-      await arrow_item.evaluate((ab) => ab.click()); //arrow icon when found is clicked
-      console.log("Arrow drop down is clicked");
-
-      await page_entry.waitForTimeout(4000); // delay of 4 seconds
-
-      let signout_item = await page_entry.waitForXPath(xpath_singout_button_s, {
-        visible: true,
-      }); //signout is to be found on the main page
-      await signout_item.evaluate((ab) => ab.click()); //signout when found is clicked
-      console.log("Signout did happen");
-    } catch (error) {
-      //end of try
-
-      //start of catch
-      console.log("Signout did not happen");
-      console.error(error);
-    } //end of catach
-  } //end of if block
-
-  //this block will execute when screen width size is greater than or equal to 1024
-  else if (width_desired >= high_width) {
-    //arrow click when the screen size is large
-
-    try {
+    
       //start of try
       let arrow_item = await page_entry.waitForXPath(xpath_singout_arrow_l, {
         visible: true,
@@ -123,11 +110,11 @@ async function signout(page_entry, width_desired, low_width, high_width) {
       }); //signout is to be found on the main page
       await signout_item.evaluate((ab) => ab.click()); //signout when found is clicked
       console.log("Signout happen");
-    } catch (error) {
-      //end of try
 
-      //start of catch
-      console.log("Signout did not happen");
-    } //end of catach
-  } //end of else if block
+      await page_entry.waitForTimeout(3000); // delay of 3 seconds
+      //verifyuing that it should reach the login page after signout
+      if (page_entry.url() === "https://app.tailwinduikit.com/login"){
+        console.log("Test is successful");
+        
+      }
 }

@@ -8,12 +8,7 @@ const puppeteer = require("puppeteer");
   var large = 1024;
 
   var width_desired = 1300; //desired width for the webpage
-  var height_desired = 600; //desired height for the webpage
-
-  var email = "testoperation@test.com"; //email used for signup and login
-  var password = "176hgwqctest"; // default password for all the accounts
-  var name = "Test-Operation"; // default name for all the accounts
-
+ 
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
@@ -29,19 +24,17 @@ const puppeteer = require("puppeteer");
   await page.setDefaultNavigationTimeout(0);
 
   await page.goto("https://tailwinduikit.com/"); //mentioned site is then reached
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(2000); // delay for 5 second for website to load
 
   await login_click_on_main_page(page,width_desired,small,large);
 
   await page.waitForTimeout(5000); // delay for 5 second for website to load
-
-
   await browser.close();
 })();
 
 
 async function login_click_on_main_page(page,width_desired,small,large) {
-  await page.waitForTimeout(5000); // delay for 5 second for website to load
+  await page.waitForTimeout(4500); // delay for 5 second for website to load
 
   var xpath_of_menu = "//*[@id='i-menu']"; //xpath for menu icon on main page
   var xpath_of_sidemenu = "//*[@id='header']/div[2]/div/div/div/div[2]/div"; //xpath for side menu on main page
@@ -129,4 +122,11 @@ async function login_click_on_main_page(page,width_desired,small,large) {
       console.log("Login is not clicked");
     } //end of CATCH
   } //end of else if block
+
+  await page.waitForTimeout(5000); // delay of 3 seconds
+      //verifyuing that it should reach the login page after signout
+      if (page.url() === "https://app.tailwinduikit.com/login"){
+        console.log("Test is successful");
+        
+      }
 }

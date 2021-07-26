@@ -1,14 +1,6 @@
 const puppeteer = require("puppeteer");
 
 (async () => {
-  //refers to tailwind layout change, when the screen size width is less than or equal to 1023 in width
-  var small = 1023;
-
-  //refers to tailwind layout change, when the screen size width is greater than or equal to 1024 in width
-  var large = 1024;
-
-  var width_desired = 1300; //desired width for the webpage
-  var height_desired = 600; //desired height for the webpage
 
   var email = "testoperation@test.com"; //email used for signup and login
   var password = "176hgwqctest"; // default password for all the accounts
@@ -56,4 +48,13 @@ async function login_on_signupbutton(page_entry) {
     //start of catch
     console.log("Login Button on the signup page is not clicked");
   } //end of catch
+
+  await page_entry.waitForTimeout(3000); // delay of 3 seconds
+      //verifyuing that it should reach the login page after signout
+      if (page_entry.url() === "https://app.tailwinduikit.com/login"){
+        console.log("Test is successful");
+        
+      }
+
+  
 }
