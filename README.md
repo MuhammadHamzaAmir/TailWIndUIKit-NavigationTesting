@@ -15,7 +15,7 @@ After installing Nodejs, check for npm and node version
 
 `npm -v`
 ### JavaScript
-The script will be run in the browser.
+The script will be run in the browser chromium or chrome.
 ### Installation Process
 On Terminal in the specified directory, initialize npm and install npm and puppeteer by running these commands
 
